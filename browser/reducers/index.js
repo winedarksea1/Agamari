@@ -8,6 +8,8 @@ import abilities from './abilities';
 import gameState from './gameState';
 import record from './record';
 import casualty from './casualty';
+import messages from './messages';
+
 
 export default combineReducers({
   auth,
@@ -18,5 +20,6 @@ export default combineReducers({
   abilities,
   gameState,
   record,
-  casualty
+  casualty,
+  messages
 });
