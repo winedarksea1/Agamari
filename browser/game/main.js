@@ -213,7 +213,7 @@ function onWindowResize() {
 
 function createLevel(){
  // planet creation
-  var planet_geometry = new THREE.TetrahedronBufferGeometry( 500, 4 );
+  var planet_geometry = new THREE.TetrahedronBufferGeometry( 750, 4 );
   var planet_material = new THREE.MeshPhongMaterial( { color: someColors['red'], shading: THREE.FlatShading});
   var planet = new THREE.Mesh( planet_geometry, planet_material );
 
@@ -222,12 +222,12 @@ function createLevel(){
   scene.add(planet);
 
   // create Cannon planet
-  var planetShape = new CANNON.Sphere(500);
+  var planetShape = new CANNON.Sphere(750);
   var planetBody = new CANNON.Body({ mass: 0, material: groundMaterial, shape: planetShape });
   world.add(planetBody);
 
   // create stars
-  var particleCount = 1800,
+  var particleCount = 2000,
     particles = new THREE.Geometry(),
     pMaterial = new THREE.PointsMaterial({
       color: 0xFFFFFF,
@@ -235,11 +235,11 @@ function createLevel(){
     });
 
   for (var p = 0; p < particleCount; p++) {
-    var pX = Math.random() * 1000 - 500,
-        pY = Math.random() * 1000 - 500,
-        pZ = Math.random() * 1000 - 500,
+    var pX = Math.random() * 1500 - 750,
+        pY = Math.random() * 1500 - 750,
+        pZ = Math.random() * 1500 - 750,
         particle = new THREE.Vector3(pX, pY, pZ)
-        particle.normalize().multiplyScalar(Math.random() * 1000 + 600)
+        particle.normalize().multiplyScalar(Math.random() * 1000 + 900)
     // add it to the geometry
     particles.vertices.push(particle);
   }

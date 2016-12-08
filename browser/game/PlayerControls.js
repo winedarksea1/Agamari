@@ -28,8 +28,8 @@ THREE.PlayerControls = function ( camera, player, cannonMesh , id) {
 
 	var keyState = {};
 	
-	var curCamZoom = 60;
-	var curCamHeight = 70;
+	var curCamZoom = 70;
+	var curCamHeight = 80;
 
 	var cameraReferenceOrientation = new THREE.Quaternion();
 	var cameraReferenceOrientationObj = new THREE.Object3D();
@@ -94,7 +94,7 @@ THREE.PlayerControls = function ( camera, player, cannonMesh , id) {
 	    cameraPlace.makeTranslation ( 0, curCamHeight * scope.scale * .8, curCamZoom * scope.scale * .8) 
 	  
 	    var cameraRot = new THREE.Matrix4();
-	    cameraRot.makeRotationX(-0.32 - (playerPosition.length()/1200));
+	    cameraRot.makeRotationX(-0.1 - (playerPosition.length()/1200));
 
 	    var oneTwo = new THREE.Matrix4();
 	    oneTwo.multiplyMatrices(cameraTransform , cameraPlace);
@@ -116,7 +116,7 @@ THREE.PlayerControls = function ( camera, player, cannonMesh , id) {
 		// get unit (directional) vector for position
 	    var norm = playerPositionCannon.normalize();
 
-	   	var localTopPoint = new CANNON.Vec3(0,0,500);
+	   	var localTopPoint = new CANNON.Vec3(0,0,750);
 	   	var topVec = new CANNON.Vec3(0,0,1);
 	   	var quaternionOnPlanet = new CANNON.Quaternion();
 	    quaternionOnPlanet.setFromVectors(topVec, playerPositionCannon);

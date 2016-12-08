@@ -7,7 +7,7 @@ let types = ['box', 'sphere'];
 let elapsedTime = {},
     moonSpawnTime = {},
     id = 1;
-let spawnTime = .5 * 1000;
+let spawnTime = .1 * 1000;
 
 const spawnFood = (io, currentRoom) => {
   // spawn food in a room every so often
@@ -15,7 +15,7 @@ const spawnFood = (io, currentRoom) => {
 
     // moon spawn cooldown
     if(!moonSpawnTime[currentRoom]){
-      moonSpawnTime[currentRoom] = Date.now() - 30 * 60 * 1000;
+      moonSpawnTime[currentRoom] = Date.now() - 120 * 60 * 1000;
     }
 
     elapsedTime[currentRoom] = Date.now();
@@ -28,10 +28,10 @@ const spawnFood = (io, currentRoom) => {
     // spawn food if room populated
     if (size(roomPlayers)) {
 
-        if (size(roomFood) < 150) {
-          let x = (Math.random() * 1000) - 500,
-              y = (Math.random() * 1000) - 500,
-              z = (Math.random() * 1000) - 500,
+        if (size(roomFood) < 250) {
+          let x = (Math.random() * 1500) - 750,
+              y = (Math.random() * 1500) - 750,
+              z = (Math.random() * 1500) - 750,
               type = types[~~(Math.random() * types.length)],
               foodSize = [];
 
@@ -93,21 +93,21 @@ const spawnFood = (io, currentRoom) => {
 
           let parms;
           // occasionally spawn food linearly scaled to players
-          if(Math.random() > .92){
+          if(Math.random() > 0){//.92){
              parms = foodSize.map(e => (e * playerToFeed.scale));
           }else{
              parms = foodSize.map(e => (e * Math.min(playerToFeed.scale, 1 + Math.log(playerToFeed.scale)/Math.log(5))));
           }
 
           // create Moon at first, then in increments based on moon spawn time
-          if(Date.now() - moonSpawnTime[currentRoom] >= 30 * 60 * 1000){
+          if(Date.now() - moonSpawnTime[currentRoom] >= 120 * 60 * 1000){
             moonSpawnTime[currentRoom] = Date.now();
 
-            x = (Math.random() * 1000) - 500,
-            y = (Math.random() * 1000) - 500,
-            z = (Math.random() * 1000) - 500,
+            x = (Math.random() * 1500) - 750,
+            y = (Math.random() * 1500) - 750,
+            z = (Math.random() * 1500) - 750,
             type = "moon",
-            parms = [100];
+            parms = [200];
           }
 
           // add food to room

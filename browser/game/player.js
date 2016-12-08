@@ -69,8 +69,8 @@ export class Player {
     mesh.position.z = initialData.z;
 
     // set spawn somewhere a bit in the air
-    mesh.position.normalize().multiplyScalar(500);
-    mesh.position.multiplyScalar(1.4);
+    mesh.position.normalize().multiplyScalar(750);
+    mesh.position.multiplyScalar(1.3);
 
     mesh.quaternion.x = initialData.qx;
     mesh.quaternion.y = initialData.qy;
@@ -105,7 +105,7 @@ export class Player {
           var distance = ball_to_planet.norm();
 
           ball_to_planet.normalize();
-          ball_to_planet = ball_to_planet.scale(3000000 * this.mass/Math.pow(distance,2))
+          ball_to_planet = ball_to_planet.scale(6000000 * this.mass/Math.pow(distance,2))
           world.gravity.set(ball_to_planet.x, ball_to_planet.y, ball_to_planet.z); // changing gravity seems to apply friction, whereas just applying force doesn't
       }
     }
