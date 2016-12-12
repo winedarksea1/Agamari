@@ -229,7 +229,7 @@ THREE.PlayerControls = function ( camera, player, cannonMesh , id) {
 		    store.dispatch(launch());
 
 		    // reduce own volume if greater than 2500
-		    if(store.getState().players[scope.id].volume > 3000){
+		    if(store.getState().players[scope.id].volume > 3500){
 		    	socket.emit('launched', scope.launchMult);
 		    }
 
