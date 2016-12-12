@@ -326,7 +326,7 @@ const setUpListeners = (io, socket) => {
         io.sockets.in(world).emit('remove_player', socket.id, id, eater, eaten);
         // disabled because bouncing bug
         //store.dispatch(changePlayerScale(id, (volume - eater.volume) / eater.volume));
-        store.dispatch(updateVolume(id, volume));
+        store.dispatch(updateVolume(id, (volume - eater.volume) / 3 + eater.volume)); // balance change: vol gain only fraction of eaten player's vol
         store.dispatch(incrementPlayersEaten(id));
         store.dispatch(updatePlayer(socket.id, initPos()));
         store.dispatch(clearDiet(socket.id));
@@ -339,6 +339,16 @@ const setUpListeners = (io, socket) => {
         socket.emit('you_got_eaten', eater.nickname);
         io.sockets.in(world).emit('casualty_report', eater.nickname, eaten.nickname);
       }
+    });
+
+    socket.on('launched', (launchMult)=>{
+      let { players } = store.getState();
+      let player = players[socket.id];
+
+      let percentageRemainingVol = 1 - .04 * launchMult;
+      console.log(launchMult, percentageRemainingVol)
+      store.dispatch(updateVolume(socket.id, player.volume * percentageRemainingVol)); 
+      store.dispatch(changePlayerScale(socket.id, -1 * player.volume * (1-percentageRemainingVol)/player.volume)); 
     });
 
     socket.on('new_message', message => {
