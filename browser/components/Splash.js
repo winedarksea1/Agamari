@@ -46,7 +46,7 @@ class Splash extends Component {
                   id="play-box">play</button>
         </div>
         <div id="github">
-          <a href="https://github.com/quirkycorgi/agamari">
+          <a href="https://github.com/kentywang/agamari">
             <i className="fa fa-github fa-lg"></i>
           </a>
         </div>
