@@ -16,8 +16,8 @@
 
 body, html {
     height: 100%;
-    color: #ffffff;
-    font-size: 1em;
+    color: #f0ffff;
+    font-size: 0.75em;
     font-family: "Quicksand", sans-serif;
     overflow: hidden;
 
@@ -169,7 +169,7 @@ body, html {
 }
 
 #chat-box {
-    transform: skewX(-2deg) skewY(-4deg);
+    transform: skewX(-1deg) skewY(-2deg);
     font-size: 1.1em;
     bottom: 5%;
     margin-left: 7%;
